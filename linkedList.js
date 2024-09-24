@@ -11,14 +11,14 @@ class LinkedList {
     this.size = 0;
   }
   append(value) {
+    const node = new Node(value);
     if (this.size === 0) {
-      this.tail = new Node(value);
-      this.head = new Node(value);
-      this.head.next=this.tail;
+      this.head = node;
+      this.tail=node;
     } else {
-      const node = new Node(value);
       this.tail.next = node;
       this.tail = node;
+      this.tail.next=null;
     }
     ++this.size;
   }
@@ -68,7 +68,7 @@ class LinkedList {
   toString() {
     let currentNode = this.head;
     let valueList = "";
-    for (let i = 0; i < this.size - 1; i++) {
+    for (let i = 0; i < this.size; i++) {
       let text = `(${currentNode.value.toString()}) ->`;
       valueList += text;
       currentNode = currentNode.next;
