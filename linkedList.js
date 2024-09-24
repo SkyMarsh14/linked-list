@@ -14,6 +14,7 @@ class LinkedList {
     if (this.size === 0) {
       this.tail = new Node(value);
       this.head = new Node(value);
+      this.head.next=this.tail;
     } else {
       const node = new Node(value);
       this.tail.next = node;
@@ -56,21 +57,24 @@ class LinkedList {
     }
     return false;
   }
-  find(value){
-    let currentNode=this.head;
-    for(let i=0;i<this.size-1;i++){
-      if(currentNode.value===value) return i;
-      currentNode=currentNode.next;
+  find(value) {
+    let currentNode = this.head;
+    for (let i = 0; i < this.size - 1; i++) {
+      if (currentNode.value === value) return i;
+      currentNode = currentNode.next;
     }
     return null;
   }
-  get toString(){
-    let currentNode=this.head;
-    let valueList="";
-    while(currentNode){
-      let text=`(${currentNode.value.toString()}) ->`;
-      valueList.concat(" ",text);
+  toString() {
+    let currentNode = this.head;
+    let valueList = "";
+    for (let i = 0; i < this.size - 1; i++) {
+      let text = `(${currentNode.value.toString()}) ->`;
+      valueList += text;
+      currentNode = currentNode.next;
     }
-    console.log(valueList);
+    return valueList + "null";
   }
 }
+
+export { LinkedList };
