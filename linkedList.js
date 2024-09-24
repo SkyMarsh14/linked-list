@@ -5,24 +5,72 @@ class Node {
   }
 }
 class LinkedList {
-
-    constructor(){
-        this.head=null;
-    }
-  append(value) {
-    while (list) {
-      if (!list.next) {
-        const node = new Node(value);
-        list.next = node;
-        if(!this.head){
-            this.head=node;
-        }
-      }
-      list = list.next;
-    }
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
   }
-  prepend(value){
-    const node=new Node(value,this.head);
-    this.head=node;
+  append(value) {
+    if (this.size === 0) {
+      this.tail = new Node(value);
+      this.head = new Node(value);
+    } else {
+      const node = new Node(value);
+      this.tail.next = node;
+      this.tail = node;
+    }
+    ++this.size;
+  }
+
+  prepend(value) {
+    if (this.size === 0) {
+      this.tail = new Node(value);
+      this.head = new Node(value);
+    } else {
+      const node = new Node(value, this.head);
+      this.head = node;
+    }
+    ++this.size;
+  }
+
+  at(index) {
+    if (index < 0 || index > this.size) return null;
+    let currentNode = this.head;
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+    return currentNode;
+  }
+
+  pop() {
+    --this.size;
+    this.tail = this.at(this.size - 1);
+    this.tail.next = null;
+  }
+
+  contains(value) {
+    let currentNode = this.head;
+    while (currentNode) {
+      if (currentNode.value === value) return true;
+      else currentNode = currentNode.next;
+    }
+    return false;
+  }
+  find(value){
+    let currentNode=this.head;
+    for(let i=0;i<this.size-1;i++){
+      if(currentNode.value===value) return i;
+      currentNode=currentNode.next;
+    }
+    return null;
+  }
+  get toString(){
+    let currentNode=this.head;
+    let valueList="";
+    while(currentNode){
+      let text=`(${currentNode.value.toString()}) ->`;
+      valueList.concat(" ",text);
+    }
+    console.log(valueList);
   }
 }
