@@ -14,11 +14,11 @@ class LinkedList {
     const node = new Node(value);
     if (this.size === 0) {
       this.head = node;
-      this.tail=node;
+      this.tail = node;
     } else {
       this.tail.next = node;
       this.tail = node;
-      this.tail.next=null;
+      this.tail.next = null;
     }
     ++this.size;
   }
@@ -75,12 +75,17 @@ class LinkedList {
     }
     return valueList + "null";
   }
-  insertAt(value,index){
-    let prev = this.at(index-1);
-    let targetNode=prev.next;
-    const node=new Node(value,targetNode);
-    prev.next=node;
+  insertAt(value, index) {
+    let prev = this.at(index - 1);
+    let targetNode = prev.next;
+    const node = new Node(value, targetNode);
+    prev.next = node;
     ++this.size;
+  }
+  removeAt(index) {
+    let prev = this.at(index - 1);
+    prev.next = prev.next.next;
+    --this.size;
   }
 }
 
