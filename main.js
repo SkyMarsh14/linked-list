@@ -3,10 +3,10 @@ import { LinkedList } from "./linkedList.js";
 const list = new LinkedList();
 
 list.append("dog");
-console.log(list)
 list.append("cat");
 list.append("parrot");
 list.append("hamster");
 list.append("snake");
 list.append("turtle");
-console.log(list.toString());
+list.insertAt("meow",4);
+console.log(list.toString())

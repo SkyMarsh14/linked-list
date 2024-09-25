@@ -59,7 +59,7 @@ class LinkedList {
   }
   find(value) {
     let currentNode = this.head;
-    for (let i = 0; i < this.size - 1; i++) {
+    for (let i = 0; i < this.size; i++) {
       if (currentNode.value === value) return i;
       currentNode = currentNode.next;
     }
@@ -74,6 +74,13 @@ class LinkedList {
       currentNode = currentNode.next;
     }
     return valueList + "null";
+  }
+  insertAt(value,index){
+    let prev = this.at(index-1);
+    let targetNode=prev.next;
+    const node=new Node(value,targetNode);
+    prev.next=node;
+    ++this.size;
   }
 }
 
